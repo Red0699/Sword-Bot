@@ -5,7 +5,6 @@ function loadEvents(client){
     const path = require('path');
 
     const eventsDir = path.join(__dirname, '..', 'Events');
-    console.log(eventsDir);
 
     const folders = fs.readdirSync(eventsDir);
     for(const folder of folders){

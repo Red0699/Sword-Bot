@@ -1,7 +1,7 @@
 module.exports = {
     name: 'ready',
     once: true,
-    async execute(client){
+    execute(client){
         console.log(`The ${client.user.username} is online`);
     }
 }

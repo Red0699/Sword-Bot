@@ -20,7 +20,7 @@ module.exports = {
 
             await clientDB.db("admin").command({ ping: 1 });
 
-            console.log("[MONGODB] is connected sucessfully :D".green);
+            console.log("[MONGODB] is connected successfully :D".green);
 
         } catch (error) {
             console.log(error.red)

@@ -1,4 +1,4 @@
-/*
+
 const { SlashCommandBuilder, EmbedBuilder, ChatInputCommandInteraction } = require('discord.js');
 const { OpenAI } = require('openai');
 
@@ -6,6 +6,7 @@ const config = require('./../../../config.json');
 
 const configuration = new OpenAI({
     apiKey: config.openAiToken,
+    maxRetries: 0
 });
 
 module.exports = {
@@ -19,16 +20,20 @@ module.exports = {
                 .setRequired(true)
         ),
 
-    
+        /**
+         * 
+         * @param {ChatInputCommandInteraction} interaction 
+         * @returns 
+         */
 
     async execute(interaction) {
         const mensaje = interaction.options.getString('mensaje');
         try {
             const res = await configuration.chat.completions.create({
-                model: 'gpt-3.5-turbo',
+                model: 'text-davinci-003',
                 prompt: mensaje,
                 max_tokens:2048,
-                temperature: 0.5
+                temperature: 0.5,
             });
 
             const embed = new EmbedBuilder()
@@ -46,4 +51,3 @@ module.exports = {
         }
     }
 }
-*/

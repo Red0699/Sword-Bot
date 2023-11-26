@@ -9,6 +9,7 @@ const config = require('../config.json');
 
 const { loadEvents } = require('./Handlers/event');
 const { loadCommands } = require('./Handlers/command');
+const { handleErrors } = require('./Functions/antiCrash');
 
 const client = new Client({
     intents: [[GatewayIntentBits.Guilds]],
@@ -21,6 +22,9 @@ client.events = new Collection();
 client.setMaxListeners(0);
 
 client.login(config.TOKEN_BOT).then(() => {
-   loadEvents(client);
-   loadCommands(client);
-});
+    //handleErrors(client);
+    loadEvents(client);
+    loadCommands(client);
+}).catch((error)=> {
+    console.log(error);
+}) ;

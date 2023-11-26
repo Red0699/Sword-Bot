@@ -1,7 +1,8 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const mongoose = require('mongoose');
 const config = require('../../../config.json');
 require('colors');
 
+/*
 const clientDB = new MongoClient(config.MONGODB_URL_ENCODED, {
     serverApi: {
         version: ServerApiVersion.v1,
@@ -9,12 +10,14 @@ const clientDB = new MongoClient(config.MONGODB_URL_ENCODED, {
         deprecationErrors: true,
     }
 });
+*/
 
 module.exports = {
     name: 'ready',
     once: true,
     async execute(client) {
 
+        /*
         try {
             await clientDB.connect();
 
@@ -30,6 +33,18 @@ module.exports = {
             await clientDB.close();
 
         }
-        console.log(`The ${client.user.username} is online`);
+        */
+
+        //Connection to Database MongoDB
+        mongoose.set('strictQuery', true);
+        await mongoose.connect(config.MONGODB_URL_ENCODED || '', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            keepAlive: true 
+        }).then(() => {
+            console.log("[MONGODB] is connected successfully :D".green);
+        }).catch(err => console.log("An error has been detected : \n" + err))
+
+        console.log(`The ${client.user.username} is online`.yellow);
     }
 }

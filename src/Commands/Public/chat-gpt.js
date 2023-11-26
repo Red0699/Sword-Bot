@@ -1,15 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, ChatInputCommandInteraction } = require('discord.js');
-const { OpenAI } = require('openai');
+
 const puppeteer = require('puppeteer');
-
-const config = require('./../../../config.json');
-
-/*
-const configuration = new OpenAI({
-    apiKey: config.openAiToken,
-    maxRetries: 0
-});
-*/
 
 module.exports = {
     data: new SlashCommandBuilder()
